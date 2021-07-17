@@ -4,6 +4,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const button = document.querySelector(".btn-trial");
 const errorTxt = document.querySelectorAll(".error-msg");
+const emailTxt = document.querySelector(".emailTxt");
 
 button.addEventListener("click", () => {
   if (
@@ -20,5 +21,15 @@ button.addEventListener("click", () => {
     errorTxt.forEach((txt) => {
       txt.classList.add("show");
     });
+  }
+
+  let emailFormat =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (email.value.match(emailFormat)) {
+    password.focus();
+    return true;
+  } else {
+    emailTxt.classList.add("show");
+    emailTxt.innerHTML = "Looks like this is not an email";
   }
 });
